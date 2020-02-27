@@ -23,6 +23,7 @@ script:
   - sudo docker exec -i ovs_agent_docker cat /etc/redhat-release
 
 # Install prereqs
+  - sudo docker exec -i ovs_agent_docker bash -cx 'cp /neutron-openvswitch-agent-builder/cbs.repo /neutron-openvswitch-agent-builder/kolla/docker/base/cbs.repo'
   - sudo docker exec -i ovs_agent_docker bash -cx 'curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py; python ./get-pip.py'
   - sudo docker exec -i ovs_agent_docker bash -cx 'pip install setuptools tox pbr jinja2 requests'
   - sudo docker exec -i ovs_agent_docker bash -cx 'yum update -y'
@@ -37,7 +38,6 @@ script:
   - git clone -b stable/$BRANCH --single-branch https://github.com/openstack/kolla ${TRAVIS_BUILD_DIR}/kolla
 
 # Install kolla
-  - sudo docker exec -i ovs_agent_docker bash -cx 'cp /neutron-openvswitch-agent-builder/cbs.repo /neutron-openvswitch-agent-builder/kolla/docker/base/cbs.repo'
   - sudo docker exec -i ovs_agent_docker bash -cx 'cd /neutron-openvswitch-agent-builder/kolla; pip install -r requirements.txt 2>&1|tee'
   - cd ${TRAVIS_BUILD_DIR}/kolla && patch -p1 < ${TRAVIS_BUILD_DIR}/cbs.patch || travis_terminate 1
   - sudo docker exec -i ovs_agent_docker bash -cx 'cd /neutron-openvswitch-agent-builder/kolla; python ./setup.py install' || travis_terminate 1
