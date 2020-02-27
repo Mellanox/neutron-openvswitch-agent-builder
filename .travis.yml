@@ -5,7 +5,6 @@ dist: bionic
 arch: arm64
 env:
   global:
-    - TAG=${TAG:-latest}
     - BRANCH=train
     - DOCKER_NAME=centos-binary-neutron-openvswitch-agent-${BRANCH}-aarch64
     - DOCKER_VERSION=latest
