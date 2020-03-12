@@ -61,6 +61,6 @@ deploy:
   - provider: script
     skip_cleanup: true
     script: >
-      bash -cx docker push ${TRAVIS_REPO_SLUG}-${BRANCH}-aarch64:${DOCKER_VERSION}
+      bash -cx docker push mellanox/${DOCKER_NAME}:${DOCKER_VERSION}
     on:
       branch: $BRANCH
