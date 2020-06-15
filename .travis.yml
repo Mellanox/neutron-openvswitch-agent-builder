@@ -18,7 +18,7 @@ before_deploy:
 
 script:
   - env
-  - sudo docker run -di --name ovs_agent_docker -v $(pwd):/neutron-openvswitch-agent-builder -v /var/run/docker.sock:/var/run/docker.sock arm64v8/centos:7 /usr/sbin/init
+  - sudo docker run -di --name ovs_agent_docker -v $(pwd):/neutron-openvswitch-agent-builder -v /var/run/docker.sock:/var/run/docker.sock arm64v8/centos:8 /usr/sbin/init
   - sudo docker exec -i ovs_agent_docker uname -a
   - sudo docker exec -i ovs_agent_docker cat /etc/redhat-release
 
@@ -28,7 +28,7 @@ script:
 # Install TripleO
   - git clone https://github.com/openstack/tripleo-repos $(pwd)/tripleo-repos
   - sudo docker exec -i ovs_agent_docker bash -cx 'cd /neutron-openvswitch-agent-builder/tripleo-repos; python3 ./setup.py install; pip3 install -r requirements.txt' || travis_terminate 1
-  - sudo docker exec -i ovs_agent_docker tripleo-repos -d centos7 -b $BRANCH current
+  - sudo docker exec -i ovs_agent_docker tripleo-repos -d centos8 -b $BRANCH current
 
 # Install kolla
   - sudo docker exec -i ovs_agent_docker yum install -y openstack-kolla || travis_terminate 1
