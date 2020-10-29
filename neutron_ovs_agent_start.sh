@@ -20,6 +20,7 @@ docker container create \
 -v /run/openvswitch:/run/openvswitch/ \
 -v ${LOG_DIR_HOST}:/var/log/neutron \
 -v ${CONF_DIR_HOST}:/etc/neutron \
+-v /etc/localtime:/etc/localtime \
 -v ${PWD}:/usr/bin/scripts \
 ${IMAGE_NAME} \
 bash /usr/bin/scripts/neutron_ovs_agent_launcher.sh
