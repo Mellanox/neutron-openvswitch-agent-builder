@@ -6,7 +6,7 @@ arch: arm64
 env:
   global:
     - TAG=${TAG:-latest}
-    - BRANCH=master
+    - BRANCH=victoria
     - DOCKER_NAME=centos-binary-neutron-openvswitch-agent-${BRANCH}-aarch64
     - DOCKER_VERSION=latest
 
