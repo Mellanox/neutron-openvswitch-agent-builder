@@ -1,14 +1,19 @@
 #!/bin/bash
 LOG_DIR_HOST=/var/log/neutron
 CONF_DIR_HOST=/etc/neutron
-BRANCH=master
-IMAGE_NAME=mellanox/centos-binary-neutron-openvswitch-agent-${BRANCH}-aarch64
+BRANCH=${BRANCH:-master}
+IMAGE_NAME=${IMAGE_NAME:-ubuntu-binary-neutron-openvswitch-agent-${BRANCH}-aarch64}
 CONTAINER_NAME=neutron_ovs_agent
+NEUTRON_USER_ID=42435
+
+# Create log file
+mkdir -p ${LOG_DIR_HOST}
+chown -R  ${NEUTRON_USER_ID}:${NEUTRON_USER_ID} ${LOG_DIR_HOST}
 
 # Create container
 docker container create \
 --network host \
---user 42435:42435 \
+--user ${NEUTRON_USER_ID}:${NEUTRON_USER_ID} \
 --privileged \
 --name ${CONTAINER_NAME} \
 --restart unless-stopped \
