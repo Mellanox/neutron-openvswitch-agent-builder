@@ -1,7 +1,7 @@
 #!/bin/bash
 
 IMAGE_TAG=${IMAGE_TAG:-latest}
-IMAGE_NAME=ubuntu-binary-neutron-openvswitch-agent-yoga-aarch64
+IMAGE_NAME=ubuntu-binary-neutron-openvswitch-agent-zed-aarch64
 
 if ! command -v docker --version &> /dev/null
 then

@@ -1,9 +1,9 @@
-FROM arm64v8/ubuntu:20.04
+FROM arm64v8/ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y && apt-get upgrade -y && \
     apt-get install software-properties-common -y && \
-    dpkg --configure -a && add-apt-repository cloud-archive:yoga -y && \
+    dpkg --configure -a && add-apt-repository cloud-archive:zed -y && \
     apt-get update -y && apt-get install neutron-openvswitch-agent -y && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 

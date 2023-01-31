@@ -1,7 +1,7 @@
 #!/bin/bash
 LOG_DIR_HOST=/var/log/neutron
 CONF_DIR_HOST=/etc/neutron
-IMAGE_NAME=${IMAGE_NAME:-ubuntu-binary-neutron-openvswitch-agent-yoga-aarch64}
+IMAGE_NAME=${IMAGE_NAME:-ubuntu-binary-neutron-openvswitch-agent-zed-aarch64}
 CONTAINER_NAME=neutron_ovs_agent
 NEUTRON_USER_ID=42435
 
