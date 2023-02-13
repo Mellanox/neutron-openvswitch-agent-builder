@@ -1,8 +1,7 @@
 #!/bin/bash
 
 IMAGE_TAG=${IMAGE_TAG:-latest}
-BRANCH=${BRANCH:-yoga}
-IMAGE_NAME=ubuntu-binary-neutron-openvswitch-agent-${BRANCH}-aarch64
+IMAGE_NAME=ubuntu-binary-neutron-openvswitch-agent-zed-aarch64
 
 if ! command -v docker --version &> /dev/null
 then
@@ -11,7 +10,7 @@ then
 fi
 if [ $(uname -i) = "aarch64" ]
 then
-    docker build --build-arg BRANCH=${BRANCH} -t ${IMAGE_NAME}:${IMAGE_TAG} .
+    docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
 else
     if ! command -v qemu-aarch64-static &> /dev/null
     then
@@ -24,6 +23,6 @@ else
         echo docker buildx must be installed
         exit 1
     fi
-    docker buildx build --build-arg BRANCH=${BRANCH} --platform linux/arm64 -t ${IMAGE_NAME}:${IMAGE_TAG} .
+    docker buildx build --platform linux/arm64 -t ${IMAGE_NAME}:${IMAGE_TAG} .
 fi
 
